@@ -1,4 +1,5 @@
 import Methods/Dichotomy
+import Methods/Parabola
 
 print("---Algorithm---")
 pritn("1. Dichotomy")
@@ -12,6 +13,8 @@ print("-> ")
 var = int(input())
 
 if var == 1:
-    Dichotomy.calculate
+    Dichotomy.run
+elif var == 4:
+    Parabola.run
 else:
     print("Unknown algo")
