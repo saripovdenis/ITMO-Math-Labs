@@ -1,11 +1,12 @@
 import Methods/Dichotomy
 import Methods/Parabola
+import Methods/GoldenRatio
 
 print("---Algorithm---")
 pritn("1. Dichotomy")
-pritn("2. GoldenRatio (not implemented)")
+pritn("2. GoldenRatio")
 pritn("3. Fibonacci (not implemented)")
-pritn("4. Parabola (not implemented)")
+pritn("4. Parabola")
 pritn("5. Brent (not implemented)")
 print("---------------")
 print("-> ")
@@ -13,8 +14,10 @@ print("-> ")
 var = int(input())
 
 if var == 1:
-    Dichotomy.run
+    Dichotomy.run()
+elif var == 2:
+    GoldenRatio.run()
 elif var == 4:
-    Parabola.run
+    Parabola.run()
 else:
     print("Unknown algo")
