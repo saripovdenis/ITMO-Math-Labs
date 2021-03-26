@@ -1,4 +1,4 @@
-def calculate():
+def run():
     print("Left border: ")
     left_border = int(input())
     print("Right border: ")
