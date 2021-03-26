@@ -26,13 +26,13 @@ def calculate(y, x_1, x_2, x_3):
 
 def run():
     print("Left border: ")
-    left_border = int(input())
+    left_border = int(input()) # 2
     print("Right border: ")
-    right_border = int(input())
+    right_border = int(input()) # 7
     print("Middle point:")
-    middle_point = float(input())
+    middle_point = float(input()) # 4
     print("Accuracy:")
-    accuracy = float(input())
+    accuracy = float(input()) # 0.01
 
     y = lambda x: np.sin(x) - np.log(x * x) + 10
     # y = lambda x: x**2
