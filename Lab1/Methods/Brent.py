@@ -5,10 +5,12 @@ import numpy as np
 def run():
     y = lambda x: np.sin(x) - np.log(x * x) + 10
 
-    a = float(input("Input a:")) # 2
-    b = float(input("Input b:")) # 6
-    accuracy = float(input("Input accuracy:")) # 0.0001
-    delta = accuracy/2 - accuracy*0.1
+    print("Left border:")
+    a = float(input()) # 2
+    print("Right border:")
+    b = float(input()) # 6
+    print("ε:")
+    accuracy = float(input()) # 0.0001
     iteration = 0
 
     K = (3 - math.sqrt(5)) / 2
@@ -24,7 +26,7 @@ def run():
     e = d
 
     while b - a >= accuracy:
-        print(f"a = {a}, b = {b}")
+        print(f"Left border: {a}, Right border: {b}")
 
         iteration += 1
         g = e
@@ -94,5 +96,5 @@ def run():
                 v = u
                 f_v = f_u
 
-    print(f"Middle value between last pair [a, b]: y = {y((a + b) / 2)}, x = {(a + b) / 2}")
+    print(f"Min(x): x = {(a + b) / 2}, Min(y): y = {y((a + b) / 2)}")
     print(f"Number of iterations - {iteration}")

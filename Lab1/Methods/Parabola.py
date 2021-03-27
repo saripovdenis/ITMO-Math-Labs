@@ -82,4 +82,5 @@ def run():
             print_params(left_border, middle_point, right_border)
             flag = False
 
+    print(f"Min(x): x = {min}, Min(y): y = {y(min)}")
     return min
