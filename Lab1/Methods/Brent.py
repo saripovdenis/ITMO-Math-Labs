@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-def y(x): return np.sin(x) - np.log(x * x) + 10
+y = lambda x: np.sin(x) - np.log(x * x) + 10
 
 a = float(input("Input a:")) # 2
 b = float(input("Input b:")) # 6
