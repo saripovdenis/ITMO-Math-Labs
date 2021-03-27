@@ -1,2 +1,2 @@
-:construction: Приматик :construction: 
+:construction: Приматик :construction:  
 Вариант 3
