@@ -1,10 +1,12 @@
 import numpy as np
 
+
 def print_params(a, b, c):
     print("--------------")
     print("Left border: ", a)
     print("Middle point: ", b)
     print("Right border: ", c)
+
 
 def condition(y, a, b, c):
     if y(b) < y(a) and y(b) < y(c):
@@ -26,13 +28,13 @@ def calculate(y, x_1, x_2, x_3):
 
 def run():
     print("Left border: ")
-    left_border = int(input()) # 2
+    left_border = int(input())  # 2
     print("Right border: ")
-    right_border = int(input()) # 7
+    right_border = int(input())  # 7
     print("Middle point:")
-    middle_point = float(input()) # 4
+    middle_point = float(input())  # 4
     print("Accuracy:")
-    accuracy = float(input()) # 0.01
+    accuracy = float(input())  # 0.01
 
     y = lambda x: np.sin(x) - np.log(x * x) + 10
     # y = lambda x: x**2
@@ -86,14 +88,3 @@ def run():
 
 
 print(run())
-
-
-
-
-
-
-
-
-
-
-
