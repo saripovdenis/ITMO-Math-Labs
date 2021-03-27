@@ -33,6 +33,10 @@ def run():
             x_1 = left_border + right_border - x_2
             x_2_value = x_1_value
             x_1_value = y(x_1)
+        print(f"Left border: {left_border}")
+        print(f"Right border: {right_border}")
+        print()
+
     minimum = (left_border + right_border) / 2
     print(f"Iter amount: {n}")
     print(f"Minimum: {minimum}")
