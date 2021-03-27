@@ -38,6 +38,7 @@ def run():
     y = lambda x: np.sin(x) - np.log(x * x) + 10
 
     min = 0  # y(min) - smallest on the segment
+    iteration = 0 # count iterations
 
     # check input values
     while condition(y, left_border, middle_point, right_border) == False:
@@ -46,6 +47,7 @@ def run():
 
     flag = True
     while flag:
+        iteration += 1
         print_params(left_border, middle_point, right_border)
 
         if (right_border - left_border) <= accuracy or (right_border - middle_point) <= accuracy or (middle_point - left_border) <= accuracy:
@@ -83,4 +85,5 @@ def run():
             flag = False
 
     print(f"Min(x): x = {min}, Min(y): y = {y(min)}")
+    print(f"Number of iterations - {iteration}")
     return min
