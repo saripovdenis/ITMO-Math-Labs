@@ -85,6 +85,3 @@ def run():
             flag = False
 
     return min
-
-
-print(run())

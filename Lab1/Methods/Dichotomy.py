@@ -1,3 +1,5 @@
+import numpy as np
+
 def run():
     print("Left border: ")
     left_border = int(input())

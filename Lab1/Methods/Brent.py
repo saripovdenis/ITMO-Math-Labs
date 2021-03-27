@@ -2,7 +2,7 @@ import math
 import numpy as np
 
 
-def Brent() {
+def run():
     y = lambda x: np.sin(x) - np.log(x * x) + 10
 
     a = float(input("Input a:")) # 2
@@ -96,4 +96,3 @@ def Brent() {
 
     print(f"Middle value between last pair [a, b]: y = {y((a + b) / 2)}, x = {(a + b) / 2}")
     print(f"Number of iterations - {iteration}")
-}
