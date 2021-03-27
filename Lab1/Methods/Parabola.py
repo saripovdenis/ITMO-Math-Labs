@@ -2,10 +2,9 @@ import numpy as np
 
 
 def print_params(a, b, c):
-    print("--------------")
-    print("Left border: ", a)
-    print("Middle point: ", b)
-    print("Right border: ", c)
+    print("Left border: ", a, end=", ")
+    print("Middle point: ", b, end=", ")
+    print("Right border: ", c, end=".\n")
 
 
 def condition(y, a, b, c):
@@ -33,11 +32,10 @@ def run():
     right_border = int(input())  # 7
     print("Middle point:")
     middle_point = float(input())  # 4
-    print("Accuracy:")
-    accuracy = float(input())  # 0.01
+    print("ε:")
+    accuracy = float(input())  # 0.000001
 
     y = lambda x: np.sin(x) - np.log(x * x) + 10
-    # y = lambda x: x**2
 
     min = 0  # y(min) - smallest on the segment
 
@@ -48,11 +46,11 @@ def run():
 
     flag = True
     while flag:
-        if right_border - left_border <= accuracy:
+        print_params(left_border, middle_point, right_border)
+
+        if (right_border - left_border) <= accuracy or (right_border - middle_point) <= accuracy or (middle_point - left_border) <= accuracy:
             print("accuracy stop")
             flag = False
-
-        print_params(left_border, middle_point, right_border)
 
         x_1 = left_border
         x_2 = middle_point
