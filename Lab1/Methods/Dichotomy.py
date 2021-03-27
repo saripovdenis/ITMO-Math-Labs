@@ -30,7 +30,9 @@ def run():
             right_border = x_2
         middle = (left_border + right_border) / 2
         delta = e / 2
-
+        print(f"Left border: {left_border}")
+        print(f"Right border: {right_border}")
+        print()
     minimum = middle
     print(f"Predicted iter amount: {predicted_iter_amount}")
     print(f"Iter amount: {iter_amount}")
