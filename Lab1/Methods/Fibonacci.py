@@ -34,14 +34,6 @@ def run():
             x_1 = left_border + fib(n - i - 1) / fib(n - i) * (right_border - left_border)
             x_2_value = x_1_value
             x_1_value = y(x_1)
-        print(x_1)
-        print(x_2)
-        print(x_1_value)
-        print(x_2_value)
-        print()
-        print(left_border)
-        print(right_border)
-        print()
     minimum = (left_border + right_border) / 2
     print(f"Iter amount: {n}")
     print(f"Minimum: {minimum}")
