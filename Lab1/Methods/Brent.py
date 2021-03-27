@@ -1,101 +1,96 @@
-def isDifferent(a, b, c):
-    if a == b and b == c and a == c:
-        return False
-    return True
+import math
+import numpy as np
 
+def y(x): return np.sin(x) - np.log(x * x) + 10
 
-def calculate(x_1, x_2, x_3, f_1, f_2, f_3):
-    numerator = (x_2 - x_1) ** 2 * (f_2 - f_3) - (x_2 - x_3) ** 2 * (f_2 - f_1)
-    denominator = (x_2 - x_1) * (f_2 - f_3) - (x_2 - x_3) * (f_2 - f_1)
+a = float(input("Input a:")) # 2
+b = float(input("Input b:")) # 6
+accuracy = float(input("Input accuracy:")) # 0.0001
+delta = accuracy/2 - accuracy*0.1
+iteration = 0
 
-    u = x_2 - numerator / (2 * denominator)
+K = (3 - math.sqrt(5)) / 2
+x = (a + b) / 2
+w = x
+v = x
 
-    return u  # point of min of our parabol
+f_x = y(x)
+f_w = f_x
+f_v = f_x
 
+d = b - a
+e = d
 
-def run():
-    # variables:
-    y = lambda x: np.sin(x) - np.log(x * x) + 10 # our func
+while b - a >= accuracy:
+    print(f"a = {a}, b = {b}")
 
-    a = 0  # left border
-    c = 0  # right border
+    iteration += 1
+    g = e
+    e = d
+    parabola_fit = False
 
-    x = 0  # min of func at now
-    w = 0  # second low value of func
-    v = 0  # last value of w
-    u = 0  # min of approciate parabola
-    epsilon = 0  # accuracy
+    if abs(x - (a + b) / 2) + (b - a) / 2 <= 2 * accuracy:
+        break
 
-    f_x = 0 # y(x)
-    f_w = 0 # y(w)
-    f_v = 0 # y(v)
+    if (x != w) and (x != v) and (w != v) and (f_x != f_w) and (f_x != f_v) and (f_w != f_v):
+        f_val = dict()
+        f_val[x] = f_x
+        f_val[w] = f_w
+        f_val[v] = f_v
 
-    # init input:
-    print("Left border: ")
-    a = float(input())
-    print("Right border: ")
-    c = float(input())
-    print("Accuracy: ")
-    epsilon = float(input())
+        l = sorted([x, w, v])[0]
+        m = sorted([x, w, v])[1]
+        r = sorted([x, w, v])[2]
 
-    # init values:
-    k = (3 - sqrt(5)) / 2
-    x = (a + c) / 2
-    w = x
-    v = x
+        f_1, f_2, f_3 = f_val[l], f_val[m], f_val[r]
 
-    f_x = y(x)
-    f_w = f_x
-    f_v = f_x
+        u = m - ((m - l) ** 2 * (f_2 - f_3) - (m - r) ** 2 * (f_2 - f_1)) / (
+                    2 * ((m - l) * (f_2 - f_3) - (m - r) * (f_2 - f_1)))
 
-    d = c - a # now step
-    e = d # last step
+        if u >= a + accuracy and u <= b - accuracy and abs(u - x) < g / 2:
+            d = abs(u - x)
+            parabola_fit = True
 
-    while True: # !!! поменять на условие сходимости g = e, e = d
-        g = e
+            if (u - a < 2 * accuracy) or (b - u) < 2 * accuracy:
+                u = x - np.sign(x - (a + b) / 2) * accuracy
 
-        if isDifferent(x, w, v) and isDifferent(f_x, f_w, f_v):
-            u = calculate() # !!! понять что калькулировать
-        
-        if (a + epsilon) <= u and u <= (c - epsilon) and math.abs(u - x) < g/2:
-            d = math.abs(u - x)
+    if not parabola_fit:
+        if x < (b + a) / 2:
+            u = x + K * (b - x)
+            d = b - x
         else:
-            if x < (c - a)/2:
-                u = x + k * (c - x) # Golden ratio [x,c]
-                d = c - x
-            else:
-                u = x - k * (x - a) # Golden ratio [a,x]
-                d = x - a
-            
-            if math.abs(u - x) < epsilon:
-                u = x + numpy.sign(u - x) * epsilon # minimal range between u and x
+            u = x - K * (x - a)
+            d = x - a
+        if abs(u - x) < accuracy:
+            u = x + np.sign(u - x) * accuracy
 
-            f_u = y(u)
-            if f_u <= f_x:
-                if u >= x:
-                    a = x
-                else:
-                    c = x
+    f_u = y(u)
+    d = abs(u - x)
 
-                v = w
-                w = x
-                x = u
-                f_v = f_w
-                f_w = f_x
-                f_x = f_u
-            else:
-                if u >= x:
-                    c = u
-                else:
-                    a = u
-                
-                if f_u <= f_w or w = x:
-                    v = w
-                    w = u
-                    f_v = f_w
-                    f_w = f_u
-                elif f_u <= f_v or v = x or v = w:
-                    v = u
-                    f_v = f_u
+    if f_u <= f_x:
+        if u >= x:
+            a = x
+        else:
+            b = x
+        v = w
+        w = x
+        x = u
+        f_v = f_w
+        f_w = f_x
+        f_x = f_u
+    else:
+        if u >= x:
+            b = u
+        else:
+            a = u
+        if f_u <= f_w or w == x:
+            v = w
+            w = u
+            f_v = f_w
+            f_w = f_u
+        elif f_u <= f_v or v == x or v == w:
+            v = u
+            f_v = f_u
 
-    return x
+print(f"Middle value between last pair [a, b]: y = {y((a + b) / 2)}, x = {(a + b) / 2}")
+print(f"Number of iterations - {iteration}")
