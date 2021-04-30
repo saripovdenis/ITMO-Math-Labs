@@ -107,4 +107,4 @@ def run(function, antigrad):
         now = now - l * antigrad(now)
         last = temp
     
-    return now
+    print(f'x: {now}, y: {function(now)}')
