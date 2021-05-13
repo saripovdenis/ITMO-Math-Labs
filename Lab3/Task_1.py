@@ -1,6 +1,6 @@
 import numpy as np
 
-def ul_rasfleksovka(matrix):
+def get_el(matrix):
     n = len(matrix)
     u = np.array(matrix)
     l = np.zeros((n, n))
