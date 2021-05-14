@@ -1,4 +1,4 @@
-from slauGenerator import slauGeneration
+from hilbertGenerator import hilbertGeneration
 from Task_1 import find_x
 from matrixZipper import zipEm
 from GaussSeidelMethod import arch_seidel
@@ -9,7 +9,7 @@ def differentConditionNumbers(eps):
     for k in range(2, 3):
         result += f"Matrix dimension: {k}\n\n"
         
-        matrices = slauGeneration(k)
+        matrices = hilbertGeneration(k)
         low, med, high = matrices[0], matrices[1], matrices[2]
         result += "Our matrix:\n"
         result += f"Low condition number:\n{low}\n"
