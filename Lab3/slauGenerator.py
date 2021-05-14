@@ -36,5 +36,3 @@ def slauGeneration(a):
     # sp.save_npz('./slauMatrices/test.npz',matrix)
 
     return A, B, C
-
-slauGeneration(3)
