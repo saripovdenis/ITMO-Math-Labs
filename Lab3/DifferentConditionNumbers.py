@@ -1,12 +1,12 @@
 from slauGenerator import slauGeneration
-from Task_1.py import find_x
-from matrixZipper import zimEm
-from Gauss-SeidelMethod import arch_seidel
+from Task_1 import find_x
+from matrixZipper import zipEm
+from GaussSeidelMethod import arch_seidel
 import numpy as np
 
 def differentConditionNumbers(eps):
-    result=""
-    for k in range(1,3):
+    result = ""
+    for k in range(2, 3):
         result += f"Matrix dimension: {k}\n\n"
         
         matrices = slauGeneration(k)
@@ -17,15 +17,15 @@ def differentConditionNumbers(eps):
         result += f"High condition number:\n{high}\n"
 
         # x vector to find b in the future
-        x = np.array()
-        for i in range(1, k):
-            x.append(i)
+        x = []
+        for i in range(1, k + 1):
+            x.append([i])
 
         #exact solution
         result += "Exact solution:\n"
 
         #low
-        b = low.dot(x)
+        b = low.dot(np.array(x))
         low_archived = zipEm(low)
         b_archived = zipEm(b)
 
@@ -98,4 +98,4 @@ def differentConditionNumbers(eps):
 
     return result
 
-print(differentConditionNumbers())
+print(differentConditionNumbers(0.00001))
