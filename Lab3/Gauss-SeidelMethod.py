@@ -1,4 +1,6 @@
 import numpy as np
+from matrixZipper import zipEm
+from scipy import sparse as sp
 
 def seidel(A, b, eps):
     n = len(A)
@@ -16,3 +18,8 @@ def seidel(A, b, eps):
         x = x_new
 
     return x
+
+def arch_seidel(data_a, index_a, ind_ptr_a, data_b, index_b, ind_ptr_b, eps):
+    A = sp.csr_matrix((data_a, index_a, ind_ptr_a)).toarray()
+    b = sp.csr_matrix((data_b, index_b, ind_ptr_b)).toarray()
+    return seidel(A, b, eps)
