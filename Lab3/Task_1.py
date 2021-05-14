@@ -5,8 +5,12 @@ from matrixZipper import zipEm
 
 def get_lu(matrix):
     n = len(matrix)
-    u = np.array(matrix)
+    u = np.zeros((n, n))
     l = np.zeros((n, n))
+
+    for i in range(n):
+        for j in range(n):
+            u[i][j] = matrix[i][j]
 
     for i in range(n):
         for j in range(i, n):
@@ -19,8 +23,6 @@ def get_lu(matrix):
         for i in range(k, n):
             for j in range(k - 1, n):
                 u[i][j] = u[i][j] - l[i][k - 1] * u[k - 1][j]
-    # print(l)
-    # print(u)
     return l, u
 
 
@@ -28,7 +30,7 @@ def find(l, u, b):
     # y = u * x
     # l * y = b
     y = reverse(l).dot(b)
-    x = reverse(u.T).T.dot(y)
+    x = np.linalg.inv(u).dot(y)
     return x
 
 
