@@ -1,10 +1,12 @@
 import numpy as np
+from obrat_l import reverse
+from scipy import sparse as sp
 
-def get_el(matrix):
+
+def get_lu(matrix):
     n = len(matrix)
     u = np.array(matrix)
     l = np.zeros((n, n))
-
 
     for i in range(n):
         for j in range(i, n):
@@ -17,5 +19,20 @@ def get_el(matrix):
         for i in range(k, n):
             for j in range(k - 1, n):
                 u[i][j] = u[i][j] - l[i][k - 1] * u[k - 1][j]
-    print(u)
-    print(l)
+    # print(l)
+    # print(u)
+    return l, u
+
+
+def find(l, u, b):
+    # y = u * x
+    # l * y = b
+    y = reverse(l).dot(b)
+    x = reverse(u.T).T.dot(y)
+    print(x)
+
+
+def task_1(data_a, index_a, ind_ptr_a, data_b, index_b, ind_ptr_b, data_e, index_e, ind_ptr_e):
+    lu = get_lu(sp.csr_matrix((data_a, index_a, ind_ptr_a)).toarray())  # lu
+    find(np.array(lu[0]), np.array(lu[1]), sp.csr_matrix((data_b, index_b, ind_ptr_b)).toarray())  # x
+    find(np.array(lu[0]), np.array(lu[1]), sp.csr_matrix((data_e, index_e, ind_ptr_e)).toarray())  # a^-1
