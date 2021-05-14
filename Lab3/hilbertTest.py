@@ -70,7 +70,7 @@ def differentConditionNumbers(eps):
             b_archived[0], b_archived[1], b_archived[2],
             eps
         )
-        result += f"low:\n{low_inexact_solution}\n"
+        result += f"low:\n{low_inexact_solution[0]}\niterations:{low_inexact_solution[1]}\n"
 
         #medium
         b = med.dot(x)
@@ -82,7 +82,7 @@ def differentConditionNumbers(eps):
             b_archived[0], b_archived[1], b_archived[2],
             eps
         )
-        result += f"medium:\n{med_inexact_solution}\n"
+        result += f"medium:\n{med_inexact_solution}\niterations:{med_inexact_solution[1]}\n"
 
         #high
         b = high.dot(x)
@@ -94,7 +94,7 @@ def differentConditionNumbers(eps):
             b_archived[0], b_archived[1], b_archived[2],
             eps
         )
-        result += f"high:\n{high_inexact_solution}\n"
+        result += f"high:\n{high_inexact_solution}\niterations:{high_inexact_solution[1]}\n"
 
     return result
 
